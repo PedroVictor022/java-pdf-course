@@ -2,7 +2,7 @@ package poo;
 
 class Conta {
     int numero_conta;
-    String titular;
+    Cliente titular = new Cliente();
     double saldo;
 
 //    void informa que nenhuma informacao sera enviada a quem chamou este metodo;
@@ -12,15 +12,17 @@ class Conta {
     }
     void sacar(double quantidade) {
         double novoSaldo = this.saldo -= quantidade;
-        if(quantidade > saldo) {
-            System.out.println("Saldo insuficiente para saque!");
+        if(quantidade > saldo || quantidade <= 0) {
+            System.out.println("Nao foi possivel realizar esta acao!");
         } else {
             System.out.println("Transacao realizada com sucesso!");
             System.out.println("NOVO SALDO: R$" + novoSaldo);
             System.out.println("---------------------------");
         }
     }
-
+    public double pegaSaldo() {
+        return this.saldo;
+    }
     boolean depositar(double quantidade) {
         if(quantidade < 0){
             System.out.println("Este valor nao e aceito");
